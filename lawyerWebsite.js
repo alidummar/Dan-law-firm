@@ -1,31 +1,93 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const navLinks = document.querySelectorAll("#list li a");
+// JavaScript to handle form submission
+document.addEventListener('DOMContentLoaded', function () {
+    const contactForm = document.getElementById('contactForm');
 
-    navLinks.forEach(function(link) {
-        link.addEventListener("click", function(event) {
-            // Remove the 'active' class from all links
-            navLinks.forEach(function(item) {
-                item.classList.remove("active");
-            });
+    // Add a submit event listener to the form
+    contactForm.addEventListener('submit', function (event) {
+        event.preventDefault();
 
-            // Add the 'active' class to the clicked link
-            event.target.classList.add("active");
+        // Get form input values
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const messageInput = document.getElementById('message');
+
+        // Perform form validation (e.g., check if email is valid)
+
+        // Send form data to a server (you can implement this part)
+        // Example: Use the Fetch API to send a POST request
+        fetch('/submit', {
+            method: 'POST',
+            body: JSON.stringify({
+                name: nameInput.value,
+                email: emailInput.value,
+                message: messageInput.value
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                // Show a success message
+                alert('Form submitted successfully!');
+                contactForm.reset();
+            } else {
+                // Handle errors (e.g., display an error message)
+                alert('Error submitting the form. Please try again later.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
         });
     });
 });
-// JavaScript to toggle the "About Me" section
-document.addEventListener('DOMContentLoaded', function () {
-    const toggleButton = document.getElementById('toggleButton');
-    const aboutMeSection = document.getElementById('aboutMeSection');
 
-    // Add a click event listener to the button
-    toggleButton.addEventListener('click', function () {
-        // Toggle the display property of the "About Me" section
-        if (aboutMeSection.style.display === 'none' || aboutMeSection.style.display === '') {
-            aboutMeSection.style.display = 'block';
-        } else {
-            aboutMeSection.style.display = 'none';
-        }
+// JavaScript for the image gallery
+document.addEventListener('DOMContentLoaded', function () {
+    const galleryImages = document.querySelectorAll('.gallery-image');
+    const modal = document.getElementById('galleryModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalCaption = document.getElementById('modalCaption');
+
+    galleryImages.forEach(function (image) {
+        image.addEventListener('click', function () {
+            modal.style.display = 'block';
+            modalImage.src = this.src;
+            modalCaption.textContent = this.alt;
+        });
+    });
+
+    modal.addEventListener('click', function () {
+        modal.style.display = 'none';
     });
 });
 
+// JavaScript for a client testimonial slider
+document.addEventListener('DOMContentLoaded', function () {
+    const testimonials = document.querySelectorAll('.testimonial');
+    const prevButton = document.getElementById('prevTestimonial');
+    const nextButton = document.getElementById('nextTestimonial');
+    let currentTestimonial = 0;
+
+    function showTestimonial(index) {
+        testimonials.forEach(function (testimonial) {
+            testimonial.style.display = 'none';
+        });
+        testimonials[index].style.display = 'block';
+    }
+
+    prevButton.addEventListener('click', function () {
+        currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+        showTestimonial(currentTestimonial);
+    });
+
+    nextButton.addEventListener('click', function () {
+        currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+        showTestimonial(currentTestimonial);
+    });
+
+    // Show the initial testimonial
+    showTestimonial(currentTestimonial);
+});
+
+// Additional JavaScript functions go here...
