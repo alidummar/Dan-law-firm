@@ -90,4 +90,13 @@ document.addEventListener('DOMContentLoaded', function () {
     showTestimonial(currentTestimonial);
 });
 
-// Additional JavaScript functions go here...
+// Example: Adding a new functionality
+document.addEventListener('DOMContentLoaded', function () {
+    const additionalElement = document.getElementById('additionalElement');
+
+    // Add an event listener for a specific action
+    additionalElement.addEventListener('click', function () {
+        // Perform an action when additionalElement is clicked
+        console.log('Additional element clicked!');
+    });
+});
