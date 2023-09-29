@@ -34,7 +34,7 @@ file in your web browser. You can navigate through different sections using the 
 
 ## Video Demonstration
 
-Watch a video demonstration of the website's features on [YouTube](https://www.youtube.com/watch?v=your-video-id).
+Watch a video demonstration of the website's features on [https://youtu.be/AI50CvnACqw](https://youtu.be/AI50CvnACqw).
 
 ## Installation
 
